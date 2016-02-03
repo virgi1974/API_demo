@@ -16,7 +16,7 @@ Rails.application.routes.draw do
         # to route requests for different versioned representations.
         # We can do this effectively by using a route constraint that checks for a version specified 
         # in the request’s accept header.
-        resources :users, :only => [:show, :create]
+        resources :users, :only => [:show, :create, :update]
 
     end
 
