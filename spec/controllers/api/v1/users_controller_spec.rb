@@ -96,4 +96,21 @@ describe Api::V1::UsersController do
          end
        end
 
+       describe "DELETE #destroy" do
+         before(:each) do
+           @user = FactoryGirl.create :user
+           delete :destroy, { id: @user.id }, format: :json
+         end
+
+         it { should respond_with 204 } #server successfully processed the request, but is not returning any content.
+
+       end
+
 end
+
+
+
+
+
+
+
