@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   # namespace for the API
 
   # we need to tell Rails how
-  # namespace :api, defaults: { format: :json }, constraints: {subdomain: 'api'}, path: '/'  do 
-  namespace :api, defaults: { format: :json }, path: '/'  do 
+  namespace :api, defaults: { format: :json }, constraints: {subdomain: 'api'}, path: '/'  do 
+  # namespace :api, defaults: { format: :json }, path: '/'  do 
 
 
     # Since we don’t want to affect our URI structure for the resource,

@@ -30,6 +30,12 @@ RSpec.configure do |config|
 # we have to include this methods into rspec as controller type helpers !!!!!!!!!!!!!! 
   config.include Request::JsonHelpers, :type => :controller
 
+  config.include Request::HeadersHelpers, :type => :controller
+
+    config.before(:each, type: :controller) do
+      include_default_accept_headers
+    end
+
 
   # ## Mock Framework
   #
