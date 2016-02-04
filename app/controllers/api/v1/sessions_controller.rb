@@ -1,5 +1,7 @@
+require 'pry'
+
 class Api::V1::SessionsController < ApplicationController
-  
+
   def create
      user_password = params[:session][:password]
      user_email = params[:session][:email]
@@ -16,5 +18,11 @@ class Api::V1::SessionsController < ApplicationController
    end
 
   def destroy
+    user = User.find_by(auth_token: params[:id])
+    # we update the authentication token so the last one becomes useless and cannot be used again !!
+    user.generate_authentication_token!
+    user.save
+    head 204
   end
+
 end
