@@ -64,6 +64,13 @@ describe Api::V1::UsersController do
 
      describe "PUT/PATCH #update" do
 
+        # we add this 'Authorization' to the headers so it includes the user´s auth_token
+        before(:each) do
+             @user = FactoryGirl.create :user
+             api_authorization_header @user.auth_token 
+             # request.headers['Authorization'] =  @user.auth_token #we put it in a helper method
+        end
+
          context "when is successfully updated" do
            before(:each) do
              @user = FactoryGirl.create :user
@@ -101,10 +108,18 @@ describe Api::V1::UsersController do
        end
 
        describe "DELETE #destroy" do
-         before(:each) do
-           @user = FactoryGirl.create :user
-           delete :destroy, { id: @user.id } #, format: :json
-         end
+
+        before(:each) do
+          @user = FactoryGirl.create :user
+          api_authorization_header @user.auth_token #we added this line
+          delete :destroy, id: @user.auth_token
+        end
+
+        # we use the authorization trough the header
+         # before(:each) do
+         #   @user = FactoryGirl.create :user
+         #   delete :destroy, { id: @user.id } #, format: :json
+         # end
 
          it { should respond_with 204 } #server successfully processed the request, but is not returning any content.
 

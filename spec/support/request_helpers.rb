@@ -22,5 +22,10 @@ module Request
        api_header
        api_response_format
      end
-   end
-end
+
+      def api_authorization_header(token)
+        request.headers['Authorization'] =  token
+      end
+
+   end #HeadersHelpers
+end #Request
