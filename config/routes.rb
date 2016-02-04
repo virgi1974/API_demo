@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   # namespace for the API
 
   # we need to tell Rails how
-  namespace :api, defaults: { format: :json }, constraints: {subdomain: 'api'}, path: '/'  do 
-  # namespace :api, defaults: { format: :json }, path: '/'  do 
+  # namespace :api, defaults: { format: :json }, constraints: {subdomain: 'api'}, path: '/'  do 
+  namespace :api, defaults: { format: :json }, path: '/'  do 
 
 
     # Since we don’t want to affect our URI structure for the resource,
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         # We can do this effectively by using a route constraint that checks for a version specified 
         # in the request’s accept header.
         resources :users, :only => [:show, :create, :update, :destroy]
+        resources :sessions, :only => [:create, :destroy]
 
     end
 

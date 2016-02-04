@@ -36,6 +36,10 @@ RSpec.configure do |config|
       include_default_accept_headers
     end
 
+  
+# DEVISE !!!
+  config.include Devise::TestHelpers, :type => :controller
+
 
   # ## Mock Framework
   #
